@@ -10,8 +10,8 @@
     <meta name="description" content="CoreUI - Open Source Bootstrap Admin Template">
     <meta name="author" content="Circle Fintech">
     <meta name="keyword" content="">
-    <link rel="shortcut icon" href="{% static 'img/favicon.png' %}">
-    <title>Circle Fintech</title>
+    
+    <title>My Company</title>
 
     <!-- Icons -->
     <link href="{% static 'dist/vendors/css/font-awesome.min.css' %}" rel="stylesheet">
@@ -114,6 +114,22 @@
                             <a class="nav-link" href="{% url 'create-user' %}">
                                 <i class="nav-icon icon-puzzle"></i> Registration</a>
                         </li>
+                    </ul>
+                </li>
+                <li class="nav-item nav-dropdown">
+                    <a class="nav-link nav-dropdown-toggle" href="#">
+                        <i class="nav-icon icon-user"></i> Client</a>
+                    <ul class="nav-dropdown-items">
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'client' %}">
+                                <i class="nav-icon icon-puzzle"></i> Client List</a>
+                        </li>
+                        
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'create_client' %}">
+                                <i class="nav-icon icon-puzzle"></i> Create Client</a>
+                        </li>
+                        
                     </ul>
                 </li>
                 <li class="nav-item nav-dropdown">
@@ -255,8 +271,8 @@
 
 <!--Footer-->
 <footer class="app-footer">
-    <span><a href="#">Circle Fintech</a> © 2018</span>
-    <span class="ml-auto">Powered by <a href="#">Circle Fintech</a></span>
+    <span><a href="#">My Company</a> © 2022</span>
+    <span class="ml-auto">Powered by <a href="#">My Company</a></span>
     
 
 <!--JS-->

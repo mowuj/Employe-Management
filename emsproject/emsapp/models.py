@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.utils.text import slugify
 from PIL import Image
+from django.utils import timezone
 # Create your models here.
 class Department(models.Model):
     name = models.CharField(max_length = 150)
@@ -95,3 +96,25 @@ class Meeting(models.Model):
     meeting_time = models.TimeField(auto_now=False, auto_now_add=False)
     def __str__(self):
         return str(self.user)
+    
+
+class Attendence(models.Model):
+    username = models.ForeignKey(User, on_delete=models.CASCADE)
+    attend_date = models.DateTimeField(default=timezone.now)
+    on_time_status = models.BooleanField(default=False)
+    late_status = models.BooleanField(default=False)
+
+    def __str__(self):
+        return str(self.username)
+
+class Client(models.Model):
+    client_name = models.CharField(max_length=250)
+    client_id=models.CharField(max_length = 150, blank=True,null=True)
+    company_name = models.CharField(max_length=250)
+    email =  models.EmailField()
+    nid = models.IntegerField()
+    image = models.ImageField(default='default.jpg',upload_to='media/images')
+    phone = models.CharField(max_length = 150)
+    
+    def __str__(self):
+        return str(self.username)

@@ -246,3 +246,35 @@ class MeetingForm(ModelForm):
             'class':'form-control bg-light badge-pill'})
         
         }
+
+
+class ClientForm(ModelForm):
+
+    class Meta:
+        model = Client
+        fields = ['client_name',
+                'client_id',
+                'company_name',
+                'email',
+                'nid',
+                'phone',
+                'image',
+                ]
+
+        widgets = {
+            'client_name': forms.TextInput(attrs={'class': 'form-control bg-light badge-pill p-2',
+            'placeholder': 'Enter Client Name'}),
+            'company_name': forms.TextInput(attrs={'class': 'form-control bg-light badge-pill p-2',
+            'placeholder': 'Enter Client Name'}),
+
+            'client_id': forms.TextInput(attrs={'class': 'form-control bg-light badge-pill p-2',
+            'placeholder': 'Enter Client Id'}),
+            'nid': forms.TextInput(attrs={'class': 'form-control bg-light badge-pill p-2',
+                                        'placeholder': "Enter NID Number"}),
+
+            'email': forms.TextInput(attrs={'class': 'form-control bg-light badge-pill p-2',
+                                            'placeholder': 'Enter Email'}),
+
+            'phone': forms.TextInput(attrs={'class': 'form-control bg-light badge-pill p-2',
+                                            'placeholder': 'Enter Your Phone Number'}),
+        }

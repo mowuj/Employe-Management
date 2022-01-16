@@ -57,6 +57,7 @@ def user_login(request):
         user = authenticate(username=username,password=password)
         if user:
             login(request,user)
+            # login_status = login_time>
             return redirect('/home')
         else:
             msg = "Username of Password is Incorrect"
@@ -80,6 +81,8 @@ def home(request):
     user = request.user
     meeting = Meeting.objects.filter(user=request.user,meeting_date=datetime.datetime.now())
     meet=meeting.count()
+    leave=Leave.objects.filter(user=request.user).count()
+    print(leave)
     context={'total':total,'l_app':l_app,'leave':leave,'meeting':meeting,'meet':meet}
     return render (request,'home.html',context)
 
@@ -212,7 +215,7 @@ def edit_profile(request):
     employee=Employee.objects.get(username=request.user)
     form = EditEmployeeForm(instance=employee)
     if request.method =='POST':
-        form = EmployeeForm(request.POST,instance=employee)
+        form = EditEmployeeForm(request.POST,request.FILES,instance=employee)
         if form.is_valid():
             form.save()  
             return redirect('/profile')
@@ -222,7 +225,7 @@ def edit_employee(request,id):
     employee = Employee.objects.get(id=id)
     form = EditEmployeeForm(instance=employee)
     if request.method =='POST':
-        form = EmployeeForm(request.POST,instance=employee)
+        form = EditEmployeeForm(request.POST,request.FILES, instance=employee)
         if form.is_valid():
             form.save()  
             return redirect('/all-employee')
@@ -265,3 +268,30 @@ def meeting(request):
     meeting = Meeting.objects.filter(meeting_date=datetime.datetime.now())
     context={'meeting':meeting}
     return render (request,'meeting.html',context)
+
+
+
+# def attendence(request):
+#     username = request.user
+#     attend = Attendence.objects.filter(username=request.user)
+#     context = {'attend': attend}
+#     return render (request,'attendence.html',context)
+
+def create_client(request):
+    form = ClientForm()
+    if request.method =='POST':
+        form = ClientForm(request.POST, request.FILES)
+        if form.is_valid():
+            form = form.save()
+            context = {'form':form} 
+            return redirect ('/')
+    form = ClientForm()
+    
+    context ={'form':form}
+    return render(request,'create_client.html',context)
+def client(request):
+    all_client = Client.objects.all()
+    clientfilter = ClientFilter(request.GET, queryset=all_client)
+    all_client = clientfilter.qs
+    context = {'all_client': all_client, 'clientfilter': clientfilter}
+    return render (request,'client.html',context)

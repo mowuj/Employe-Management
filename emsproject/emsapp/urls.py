@@ -24,4 +24,8 @@ urlpatterns = [
     path('delete/<int:id>',delete, name = "delete"),
     path('create-meeting',create_meeting, name = "create-meeting"),
     path('meeting',meeting, name = "meeting"),
+    # path('attendence', attendence, name="attendence"),
+    path('create_client', create_client, name="create_client"),
+    path('client', client, name="client"),
+    
 ]

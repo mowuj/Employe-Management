@@ -24,3 +24,15 @@ class EmployeeFilter(django_filters.FilterSet):
                     'image',
                     'father_name',
                     'mother_name']
+class ClientFilter(django_filters.FilterSet):
+    # start_date = DateFilter(field_name="date",lookup_expr='gte')
+    # end_date = DateFilter(field_name="date",lookup_expr='lte')
+    
+    class Meta:
+        model = Client
+        fields = '__all__'
+        exclude = ['email',
+                    'nid',
+                    'image',
+                    'phone'
+                    ]
