@@ -39,14 +39,30 @@ class DailyTaskAdmin(admin.ModelAdmin):
                     'do_status',
                     'done_status']
 
+
+class ClientAdmin(admin.ModelAdmin):
+    model = Client
+    list_display = ['client_name',
+                    'client_id',
+                    'company_name', 'email',
+                    'nid', 'phone'
+                    ]
+class MeetingAdmin(admin.ModelAdmin):
+    model = Meeting
+    list_display = ['user',
+                    'name',
+                    'meeting_time', 'meeting_date'
+                    
+                    ]
+
 admin.site.register(Department)
 admin.site.register(Division)
 admin.site.register(Post)
-admin.site.register(Meeting)
+admin.site.register(Meeting, MeetingAdmin)
 admin.site.register(District,DistrictAdmin)
 admin.site.register(Leave,LeaveAdmin)
 admin.site.register(Employee,EmployeeAdmin)
 admin.site.register(Holiday,HolidayAdmin)
 admin.site.register(DailyTask,DailyTaskAdmin)
 admin.site.register(Attendence)
-admin.site.register(Client)
+admin.site.register(Client, ClientAdmin)

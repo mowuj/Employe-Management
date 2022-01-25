@@ -51,14 +51,14 @@ All employee
 
                 <tr>
                     <th scope="row">{{forloop.counter}}</th>
-                    <td><a href=""><img style="width:50px;height:40px;" src="{{i.image.url}}"
+                    <td><a href="{% url 'client_details' i.id %}"><img style="width:50px;height:40px;" src="{{i.image.url}}"
                                 alt="" class="rounded-circle"></a></td>
                     <td><a href="">{{i.client_name | title}}</a></td>
                     <td>{{i.client_id}}</td>
                     
                     <td>{{i.phone}}</td>
                     <td>{{i.company_name}}</td>
-                    <td> <a href="{% url 'delete' i.id %}">
+                    <td> <a href="{% url 'client_delete' i.id %}">
                             <button type="button" class="btn btn-danger">X</button>
                         </a></td>
                     </td>

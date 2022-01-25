@@ -82,7 +82,6 @@ def home(request):
     meeting = Meeting.objects.filter(user=request.user,meeting_date=datetime.datetime.now())
     meet=meeting.count()
     leave=Leave.objects.filter(user=request.user).count()
-    print(leave)
     context={'total':total,'l_app':l_app,'leave':leave,'meeting':meeting,'meet':meet}
     return render (request,'home.html',context)
 
@@ -284,7 +283,7 @@ def create_client(request):
         if form.is_valid():
             form = form.save()
             context = {'form':form} 
-            return redirect ('/')
+            return redirect ('/client')
     form = ClientForm()
     
     context ={'form':form}
@@ -295,3 +294,14 @@ def client(request):
     all_client = clientfilter.qs
     context = {'all_client': all_client, 'clientfilter': clientfilter}
     return render (request,'client.html',context)
+
+
+def client_delete(requst, id):
+    client = Client.objects.get(id=id)
+    client = client.delete()
+    return redirect('/client')
+
+def client_details(request,id):
+    c_detail = Client.objects.filter(id=id)
+    context={'c_detail':c_detail}
+    return render(request,'client_details.html',context)

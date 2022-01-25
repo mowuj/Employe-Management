@@ -117,4 +117,4 @@ class Client(models.Model):
     phone = models.CharField(max_length = 150)
     
     def __str__(self):
-        return str(self.username)
+        return str(self.client_name)

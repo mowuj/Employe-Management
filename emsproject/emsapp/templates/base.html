@@ -42,13 +42,13 @@
         </li>
         <li class="nav-item px-3">
             <b>
-                <a class="nav-link disabled" href="#">{% now "h:i A" %}</a>
+                <a class="nav-link disabled" href="#">Time - {% now "h:i A" %}</a>
             </b>
             
         </li>
         <li class="nav-item px-3">
             <b>
-                <a class="nav-link disabled" href="#">{% now "D jS N Y" %}</a>
+                <a class="nav-link disabled" href="#">Today - {% now "D jS N Y" %}</a>
             </b>
             
         </li>
@@ -60,16 +60,16 @@
         <li class="nav-item dropdown">
             
             <a class="nav-link dropdown-toggle nav-link" data-toggle="dropdown" href="#" role="button"
-               aria-haspopup="true" aria-expanded="false">
-               
+            aria-haspopup="true" aria-expanded="false">
+            
                 <img style="width:40px;height:40px;" src="{{ request.user.employee.image.url }}" class="img-avatar" alt="admin@bootstrapmaster.com">
             </a>
             <div class="dropdown-menu dropdown-menu-right">
                 <div class="dropdown-header text-center">
                     <strong>Account</strong>
                 </div>
-                <a class="dropdown-item" href="#"><i class="fa fa-bell-o"></i> Updates<span
-                        class="badge badge-info">42</span></a>
+                <a class="dropdown-item" href="{% url 'meeting' %}"><i class="fa fa-bell-o"></i> Meetings<span
+                        class="badge badge-info">{{meet}}</span></a>
                 <div class="dropdown-header text-center">
                     <strong>Settings</strong>
                 </div>
@@ -181,8 +181,6 @@
                             <a class="nav-link" href="{% url 'meeting' %}">
                                 <i class="nav-icon icon-puzzle"></i> Today Meeting</a>
                         </li>
-                        
-                       
                     </ul>
                 </li>
             </ul>
@@ -243,7 +241,7 @@
         <div class="tab-content">
             <div class="tab-pane active" id="timeline" role="tabpanel">
                 <div class="callout m-0 py-2 text-muted text-center bg-light text-uppercase">
-                    <small><b>Today</b></small>
+                    <small><b>Todays Meeting</b></small>
                 </div>
                 {% for i in meeting %}
                 <hr class="transparent mx-3 my-0">
